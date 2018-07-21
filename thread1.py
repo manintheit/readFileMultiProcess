@@ -2,15 +2,11 @@ import sys
 import multiprocessing
 import time
 import linecache
-#lck = multiprocessing.Lock()
 #########################################################
 def readWriteFile(fName, thName, start, end):
-    global lck
-    #lck.acquire()
     with open('dirs/' + str(thName) + '.txt', 'w') as wf:
         for pos in xrange(start, end +1):
             wf.write(linecache.getline(fName, pos))
-    #lck.release()
 
 ########################################################
 def lineCount(fName):
@@ -62,7 +58,6 @@ for i in (threads):
 
 for i in (threads):
     i.join()
-    pass
 
 
 
